@@ -11,9 +11,6 @@ body {
         radial-gradient(#ffd180 20%, transparent 20%);
     background-size: 30px 30px;
     background-position: 0 0, 15px 15px;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
     user-select: none;
 }
 .container {
@@ -29,7 +26,6 @@ header {
     padding: 10px;
     border-radius: 30px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    position: relative;
     overflow: hidden;
 }
 .logo {
@@ -38,20 +34,11 @@ header {
     object-fit: cover;
     filter: drop-shadow(0 2px 3px rgba(0,0,0,0.3));
 }
-@keyframes slide {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
 h1 {
     color: #c05f15;
     font-size: 2.5em;
-    margin: 0px;
+    margin: 0;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-    position: relative;
 }
 .mascot {
     width: 200px;
