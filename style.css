@@ -11,6 +11,10 @@ body {
         radial-gradient(#ffd180 20%, transparent 20%);
     background-size: 30px 30px;
     background-position: 0 0, 15px 15px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 .container {
     max-width: 800px;
