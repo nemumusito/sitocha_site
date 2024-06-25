@@ -19,14 +19,30 @@ body {
     padding: 20px;
 }
 header {
-    background-image: url('img/header.webp');
-    background-size: cover;
-    background-position: center;
+    background-color: #ffab40;
     text-align: center;
-    padding: 10px;
+    padding: 20px;
     border-radius: 30px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    position: relative;
     overflow: hidden;
+}
+header::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: repeating-linear-gradient(
+        45deg,
+        #ffcc80,
+        #ffcc80 10px,
+        #ffd180 10px,
+        #ffd180 20px
+    );
+    opacity: 0.3;
+    animation: slide 20s linear infinite;
 }
 .logo {
     width: 300px;
