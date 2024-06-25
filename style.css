@@ -37,12 +37,21 @@ header::before {
     background: repeating-linear-gradient(
         45deg,
         #ffcc80,
-        #ffcc80 10px,
-        #ffd180 10px,
-        #ffd180 20px
+        #ffcc80 5px,
+        #ffd180 5px,
+        #ffd180 10px
     );
-    opacity: 0.3;
-    animation: slide 20s linear infinite;
+    opacity: 0.5;
+    animation: slide 10s linear infinite;
+}
+
+@keyframes slide {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(50%);
+    }
 }
 .logo {
     width: 300px;
