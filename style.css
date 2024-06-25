@@ -18,38 +18,139 @@ body {
     margin: 0 auto;
     padding: 20px;
 }
-header {
-    background-color: #ffab40;
-    text-align: center;
-    padding: 20px;
-    border-radius: 30px;
+
+
+
+
+
+.header-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    background-image: url('img/header.webp');
+    background-size: 1100px auto;
+    background-position: right 100% top 55%;
+    padding: 20px 0;
+    border-radius: 0 0 30px 30px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     position: relative;
     overflow: hidden;
 }
-header::before {
+
+.header-wrapper::before {
     content: "";
     position: absolute;
     top: -50%;
     left: -50%;
-    width: 200%;
-    height: 200%;
-    background: repeating-linear-gradient(
+    right: -50%;
+    bottom: -50%;
+    background: linear-gradient(
         45deg,
-        #ffcc80,
-        #ffcc80 5px,
-        #ffd180 5px,
-        #ffd180 10px
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.1) 50%,
+        rgba(255, 255, 255, 0) 100%
     );
-    opacity: 0.5;
-    animation: slide 10s linear infinite;
+    animation: shine 10s infinite linear;
 }
+
+@keyframes shine {
+    0% {
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    }
+    100% {
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+    }
+}
+
+.header-wrapper .sparkle {
+    position: absolute;
+    background-color: #fff;
+    border-radius: 50%;
+    opacity: 0;
+    animation: sparkle 3s infinite;
+}
+
+@keyframes sparkle {
+    0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+    50% { opacity: 1; transform: scale(1) rotate(180deg); }
+}
+
+header {
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    z-index: 2;
+}
+
 .logo {
     width: 300px;
     height: 90px;
     object-fit: cover;
-    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.3));
+    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.4));
+    transition: all 0.3s ease;
 }
+
+.logo:hover {
+    transform: scale(1.05) rotate(-2deg);
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.6)) brightness(1.1);
+}
+
+
+@keyframes puddingExplode {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(0);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--tx), var(--ty)) scale(1);
+    }
+}
+
+
+
+.pudding-explosion {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.pudding-particle {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    opacity: 0;
+    animation: puddingExplode 2s ease-out forwards;
+}
+
+@keyframes puddingExplode {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(0) rotate(0deg);
+    }
+    50% {
+        opacity: 1;
+        transform: translate(calc(var(--tx) * 0.5), calc(var(--ty) * 0.5)) scale(1) rotate(calc(var(--rotation) * 0.5));
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--tx), var(--ty)) scale(1) rotate(var(--rotation));
+    }
+}
+
+.logo {
+    cursor: pointer;
+}
+
+
+
+
 h1 {
     color: #c05f15;
     font-size: 2.5em;
@@ -133,3 +234,16 @@ li::before {
 .twitch { background-color: #9146FF; }
 .booth { background-color: #FC4D50; }
 .github { background-color: #24292e; }
+
+
+@media (max-width: 600px) {
+    .social-links {
+        flex-direction: column;
+    }
+    .social-links a {
+        width: 100%;
+        max-width: none;
+    }
+}
+
+
