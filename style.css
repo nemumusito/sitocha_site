@@ -221,6 +221,11 @@ li::before {
     display: flex;
     align-items: center;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    max-width: 446px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box; /* Add this line */
+
 }
 .social-links a:hover {
     transform: translateY(-3px);
@@ -230,6 +235,7 @@ li::before {
     width: 24px;
     height: 24px;
     margin-right: 8px;
+    flex-shrink: 0; /* Add this line */
 }
 .youtube { background-color: #FF0000; }
 .twitter { background-color: #1DA1F2; }
