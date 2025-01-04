@@ -173,7 +173,45 @@ h1 {
     margin: 20px auto;
     display: block;
     box-shadow: 0 0 15px rgba(255, 167, 38, 0.6);
+    transition: all 0.5s ease;
+    position: relative;
 }
+
+.mascot:hover {
+    transform: scale(1.05);
+    border-color: #ff9800;
+    box-shadow: 0 0 25px rgba(255, 167, 38, 0.8),
+                inset 0 0 15px rgba(255, 152, 0, 0.3);
+}
+
+.mascot::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, rgba(255, 167, 38, 0.2) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+.mascot:hover::after {
+    opacity: 1;
+}
+@keyframes sectionAppear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .section {
     background-color: rgba(255, 255, 255, 0.95);
     border-radius: 25px;
@@ -184,6 +222,12 @@ h1 {
     backdrop-filter: blur(5px);
     position: relative;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: sectionAppear 0.8s ease-out forwards;
+    animation-play-state: paused;
+}
+
+.section.visible {
+    animation-play-state: running;
 }
 
 .section:hover {
@@ -291,6 +335,31 @@ li:hover::before {
 .twitch { background-color: #9146FF; }
 .booth { background-color: #FC4D50; }
 .github { background-color: #24292e; }
+.blog {
+    background: linear-gradient(45deg, #FF9800, #FF5722);
+    position: relative;
+    overflow: hidden;
+}
+.blog::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0.1) 100%
+    );
+    transform: rotate(45deg);
+    animation: shimmerBlog 3s infinite linear;
+}
+@keyframes shimmerBlog {
+    0% { transform: translateX(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) rotate(45deg); }
+}
 
 
 @media (max-width: 600px) {
@@ -303,4 +372,27 @@ li:hover::before {
     }
 }
 
+.background-particle {
+    position: fixed;
+    pointer-events: none;
+    background: radial-gradient(circle at center, rgba(255, 167, 38, 0.3), transparent);
+    border-radius: 50%;
+    z-index: 1;
+}
 
+@keyframes floatParticle {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 0;
+    }
+    20% {
+        opacity: 0.8;
+    }
+    80% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translate(var(--moveX, 100px), var(--moveY, -100px)) rotate(360deg);
+        opacity: 0;
+    }
+}
